@@ -1,3 +1,11 @@
+.AppBar-background{
+  background-color:rgba(230, 152, 7, 0.63) !important;
+}
+.AppBar-background-dashboard{
+  background-color:rgba(182, 121, 8, 0.89) !important;
+}
+
+
 .iconImg {
   width: 40px;
   margin-right: 10px;

@@ -1,5 +1,4 @@
 import React from "react";
-import "./Navigation.css";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -13,11 +12,12 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 
 import MoreIcon from "@mui/icons-material/MoreVert";
 import iconImg from "../../../Images/pizza.png";
-import DashboardIcon from "@mui/icons-material/Dashboard";
+import HomeIcon from "@mui/icons-material/Home";
+import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
 import { Tooltip } from "@mui/material";
 import { useHistory } from "react-router";
 
-const Navigation = () => {
+const DashboardAppBar = () => {
   const history = useHistory();
   const [setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -57,9 +57,9 @@ const Navigation = () => {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <DashboardIcon />
+          <AddCircleOutlineSharpIcon />
         </IconButton>
-        <p>Dashboard</p>
+        <p style={{ marginTop: "15px" }}>Add Product</p>
       </MenuItem>
 
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -72,42 +72,56 @@ const Navigation = () => {
         >
           <AccountCircle />
         </IconButton>
-        <p>Login</p>
+        <p style={{ marginTop: "15px" }}>Login</p>
       </MenuItem>
     </Menu>
   );
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className="AppBar-background">
+      <AppBar position="static" className="AppBar-background-dashboard">
         <Toolbar>
           <img className="iconImg" src={iconImg} alt="" />
           <h2>Foodie</h2>
-          
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Tooltip title="Dashboard" placement="bottom">
+            <Tooltip title="Home" placement="bottom">
               <IconButton
                 size="large"
                 aria-label="show 4 new mails"
                 color="inherit"
-                onClick={() => {history.push('/dashboard')}}
+                onClick={() => {
+                  history.push("/");
+                }}
               >
-                <DashboardIcon />
+                <HomeIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Add Product" placement="bottom">
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+                onClick={() => {
+                  history.push("/dashboard/addProduct");
+                }}
+              >
+                <AddCircleOutlineSharpIcon />
               </IconButton>
             </Tooltip>
 
             <Tooltip title="Login" placement="bottom">
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
             </Tooltip>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -129,4 +143,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default DashboardAppBar;

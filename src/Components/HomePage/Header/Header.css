@@ -1,0 +1,33 @@
+.header-banner {
+  background-image: linear-gradient(to right, #443f3ff3, #9f9fa560),
+    url("../../../Images/—Pngtree—gourmet\ bbq\ skewers\ food\ stalls_1094502.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 60vh;
+}
+
+.banner-title{
+    color: white;
+    font-size: 130px;
+    font-family: 'Stick No Bills', sans-serif;
+    
+
+}
+.banner-text{
+  font-size:20px;
+  color:rgb(240, 159, 9)
+}
+.target-text{
+  color: rgb(240, 159, 9);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@600&display=swap');
+
+
+@media (max-width: 992px) {
+  .banner-title{
+    font-size: 80px;
+    margin-top: 40px;
+  }
+}
