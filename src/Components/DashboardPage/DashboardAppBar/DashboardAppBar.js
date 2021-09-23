@@ -7,19 +7,20 @@ import IconButton from "@mui/material/IconButton";
 
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-
+import BorderAllIcon from '@mui/icons-material/BorderAll';
 import AccountCircle from "@mui/icons-material/AccountCircle";
-
+import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import MoreIcon from "@mui/icons-material/MoreVert";
 import iconImg from "../../../Images/pizza.png";
 import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from '@mui/icons-material/Logout';
 import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
 import { Tooltip } from "@mui/material";
 import { useHistory } from "react-router";
 import { UserContext } from './../../../App';
 
 const DashboardAppBar = () => {
-  const [loggedInUser ,] = useContext(UserContext);
+  const [loggedInUser , setLoggedInUser] = useContext(UserContext);
   const history = useHistory();
   const [setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -99,6 +100,30 @@ const DashboardAppBar = () => {
                 <HomeIcon />
               </IconButton>
             </Tooltip>
+            <Tooltip title="All Items" placement="bottom">
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+                onClick={() => {
+                  history.push("/dashboard/allItem");
+                }}
+              >
+                <BorderAllIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Order" placement="bottom">
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+                onClick={() => {
+                  history.push("/dashboard/orderItem");
+                }}
+              >
+                <RestaurantMenuIcon />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Add Product" placement="bottom">
               <IconButton
                 size="large"
@@ -111,6 +136,23 @@ const DashboardAppBar = () => {
                 <AddCircleOutlineSharpIcon />
               </IconButton>
             </Tooltip>
+
+            
+            
+            <Tooltip title="Log Out" placement="bottom">
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+                onClick={() => {
+                  setLoggedInUser({});
+                  history.push('/')
+                }}
+              >
+                <LogoutIcon />
+              </IconButton>
+            </Tooltip>
+
             <img className="userImg" src={loggedInUser.photo} alt=""/>
 
             {/* <Tooltip title="Login" placement="bottom">

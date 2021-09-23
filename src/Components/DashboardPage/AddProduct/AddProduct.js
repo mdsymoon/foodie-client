@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddProduct.css";
 import { useForm } from "react-hook-form";
 import Button from "@restart/ui/esm/Button";
-import { Form } from "react-bootstrap";
+
 
 const AddProduct = () => {
   const {
@@ -16,7 +16,7 @@ const AddProduct = () => {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
-  console.log(file);
+  
   const onSubmit = (data) => {
     const formData = new FormData();
     formData.append("file", file);
