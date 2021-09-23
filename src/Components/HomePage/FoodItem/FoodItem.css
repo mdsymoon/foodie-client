@@ -1,0 +1,19 @@
+.menu-title{
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+}
+.selector{
+    width: 80%;
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.menu-header{
+    color: #F09F09;
+    font-size: 90px;
+    text-align: center;
+    font-family: 'Stick No Bills', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');

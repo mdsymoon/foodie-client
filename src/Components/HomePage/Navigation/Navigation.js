@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useContext} from "react";
 import "./Navigation.css";
 
 import AppBar from "@mui/material/AppBar";
@@ -16,8 +16,10 @@ import iconImg from "../../../Images/pizza.png";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Tooltip } from "@mui/material";
 import { useHistory } from "react-router";
+import { UserContext } from './../../../App';
 
 const Navigation = () => {
+  const [loggedInUser ,] = useContext(UserContext);
   const history = useHistory();
   const [setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -96,7 +98,9 @@ const Navigation = () => {
               </IconButton>
             </Tooltip>
 
-            <Tooltip title="Login" placement="bottom">
+            {loggedInUser.email ? (<img className="userImg" src={loggedInUser.photo} alt="" />)
+            :
+            (<Tooltip title="Login" placement="bottom">
             <IconButton
               size="large"
               edge="end"
@@ -105,10 +109,15 @@ const Navigation = () => {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
+              onClick={() => {history.push('/login')}}
             >
               <AccountCircle />
             </IconButton>
-            </Tooltip>
+            </Tooltip>)
+            
+            }
+
+            
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext} from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,8 +16,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
 import { Tooltip } from "@mui/material";
 import { useHistory } from "react-router";
+import { UserContext } from './../../../App';
 
 const DashboardAppBar = () => {
+  const [loggedInUser ,] = useContext(UserContext);
   const history = useHistory();
   const [setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -109,8 +111,9 @@ const DashboardAppBar = () => {
                 <AddCircleOutlineSharpIcon />
               </IconButton>
             </Tooltip>
+            <img className="userImg" src={loggedInUser.photo} alt=""/>
 
-            <Tooltip title="Login" placement="bottom">
+            {/* <Tooltip title="Login" placement="bottom">
               <IconButton
                 size="large"
                 edge="end"
@@ -122,7 +125,7 @@ const DashboardAppBar = () => {
               >
                 <AccountCircle />
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton

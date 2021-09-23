@@ -1,0 +1,16 @@
+.googleSignIn{
+  
+    border:none;
+    font-size: 25px;
+    width:400px;
+    border-radius:5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.10s;
+    margin:auto;
+    
+ }
+ .icon{
+     font-size: 40px;
+ }

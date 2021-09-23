@@ -4,29 +4,34 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Dashboard from "./Components/DashboardPage/Dashboard/Dashboard";
 import { createContext, useState } from "react";
+import Login from "./Components/Login/Login";
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
-export const ItemsContext = createContext();
+export const UserContext = createContext();
 function App() {
-  const [items, setItems] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({});
 
   
 
 
 
   return (
-    <ItemsContext.Provider value={[items, setItems]}>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
 
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
+          </PrivateRoute>
+          <Route path="/login">
+           <Login></Login>
           </Route>
         </Switch>
       </Router>
-    </ItemsContext.Provider>
+    </UserContext.Provider>
   );
 }
 
