@@ -1,40 +1,103 @@
-import React from 'react';
-import {Card} from 'react-bootstrap'
-import { useContext } from 'react';
-import { UserContext } from './../../../App';
+import React, { useState } from "react";
+import './FoodItemCard.css';
+import { Card , Alert } from "react-bootstrap";
+import { useContext } from "react";
+import { UserContext } from "./../../../App";
+import Modal from 'react-modal';
 
-const FoodItemCard = ({food , title, price, img , category}) => {
-   const [loggedInUser ,] = useContext(UserContext);
-    const handleOrder = () => {
-        const orderItem = {
-            title, price , img , category, 
-            email: loggedInUser.email
-        }
-        fetch(`http://localhost:5000/order`, {
-            method: 'POST', 
-            headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify(orderItem)
-        })
-        .then(res => res.json())
-        .then(data => {
+Modal.setAppElement("#root");
 
-        })
-    }
-    return (
-        <div className=" col-lg-4 col-md-6 d-flex justify-content-center align-items-center mb-5">
-            <Card style={{ width: '18rem' }} onClick={handleOrder}>
-        <Card.Img variant="top"src={`data:image/png;base64,${food.img.img}`} />
-        <Card.Body>
-          <Card.Title>{food.title}</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the bulk of
-            the card's content.
-          </Card.Text>
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "300px",
+  },
+};
+
+const FoodItemCard = ({ food, title, price, img, category }) => {
+  const [loggedInUser] = useContext(UserContext);
+  const [modalIsOpen, setIsOpen] = useState(false)
+
+  function openModal() {
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const handleOrder = () => {
+    const orderItem = {
+      title,
+      price,
+      img,
+      category,
+      email: loggedInUser.email,
+    };
+    fetch(`http://localhost:5000/order`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(orderItem),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        openModal()
+      });
+  };
+  return (
+    <div className="item-card col-lg-4 col-md-6 d-flex justify-content-center align-items-center mb-5">
+      {loggedInUser.email ? (
+        <Card style={{ width: "18rem" }} onClick={handleOrder}>
+          <Card.Img
+            variant="top"
+            src={`data:image/png;base64,${food.img.img}`}
+          />
+          <Card.Body>
+            <div className="d-flex justify-content-between">
+              <Card.Title>{food.title}</Card.Title>
+              <Card.Title>${food.price}</Card.Title>
+            </div>
+          </Card.Body>
           
-        </Card.Body>
-      </Card>
-        </div>
-    );
+        </Card>
+        
+      ) : (
+        <Card
+          style={{ width: "18rem" }}
+          onClick={() => {
+            alert("Please Login First");
+          }}
+        >
+          <Card.Img
+            variant="top"
+            src={`data:image/png;base64,${food.img.img}`}
+          />
+          <Card.Body>
+            <div className="d-flex justify-content-between">
+              <Card.Title>{food.title}</Card.Title>
+              <Card.Title>${food.price}</Card.Title>
+            </div>
+          </Card.Body>
+        </Card>
+      )}
+       <Modal
+        isOpen={modalIsOpen}
+        
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <h4>'{food.title}' added to your order.</h4>
+        <button onClick={closeModal}>close</button>
+        
+      </Modal>
+    </div>
+    
+  );
 };
 
 export default FoodItemCard;

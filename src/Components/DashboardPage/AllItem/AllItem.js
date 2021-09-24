@@ -5,9 +5,13 @@ import { Table } from 'react-bootstrap';
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 
 const AllItem = () => {
     const [allItems , setAllItems] = useState([]);
+    const [loadData , setLoadData] = useState(false)
 
     useEffect(() => {
         fetch(`http://localhost:5000/items`, {
@@ -18,6 +22,7 @@ const AllItem = () => {
           .then((res) => res.json())
           .then((data) => {
             setAllItems(data);
+            setLoadData(true);
           });
       });
 
@@ -82,6 +87,11 @@ const AllItem = () => {
             ))}
           </tbody>
         </Table>
+        <div className="d-flex justify-content-center mt-5">
+        {!loadData && <Box sx={{ display: 'flex' }}>
+      <CircularProgress color="secondary" />
+    </Box>}
+      </div>
       </div>
     </div>
     );

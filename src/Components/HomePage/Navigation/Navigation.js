@@ -61,10 +61,16 @@ const Navigation = () => {
 
     {loggedInUser.email? (
       <MenuItem onClick={() => setLoggedInUser({})}>
-      
-         <img style={{ marginLeft: "10px" }} className="userImg" src={loggedInUser.photo} alt="" />
-     
-      <p style={{ paddingTop: "15px" , marginLeft:"10px" }}>Log Out</p>
+      <div className="d-flex">
+        <img
+          style={{ marginLeft: "10px" }}
+          className="userImg"
+          src={loggedInUser.photo}
+          alt=""
+        />
+
+        <p style={{ marginTop: "10px", marginLeft: "10px" }}>Log Out</p>
+        </div>
     </MenuItem>
     ): (
       <MenuItem onClick={() => history.push('/login')}>

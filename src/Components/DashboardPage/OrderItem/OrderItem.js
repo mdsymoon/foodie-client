@@ -6,10 +6,13 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {Table} from "react-bootstrap";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const OrderItem = () => {
   const [loggedInUser] = useContext(UserContext);
   const [order, setOrder] = useState([]);
+  const [loadData , setLoadData] = useState(false)
   useEffect(() => {
     fetch(`http://localhost:5000/orderItem`, {
       method: "POST",
@@ -19,6 +22,7 @@ const OrderItem = () => {
       .then((res) => res.json())
       .then((data) => {
         setOrder(data);
+        setLoadData(true)
       });
   }, [order, loggedInUser.email]);
 
@@ -34,6 +38,7 @@ const OrderItem = () => {
           .then((res) => res.json())
           .then((data) => {
             setOrder(data);
+            setLoadData(true)
           });
       });
   };
@@ -71,7 +76,7 @@ const OrderItem = () => {
                   <p style={{ marginTop: "10px" }}>{item.category}</p>
                 </td>
                 <td>
-                  <Tooltip title="cancel" placement="left" style={{ marginTop: "10px" }} onClick={() =>{handleDelete(item._id)}}>
+                  <Tooltip title="cancel" placement="left" style={{ marginTop: "10px" }} onClick={() =>{handleDelete(item._id);setLoadData(false)}}>
                     <IconButton>
                       <HighlightOffIcon  />
                     </IconButton>
@@ -81,6 +86,11 @@ const OrderItem = () => {
             ))}
           </tbody>
         </Table>
+        <div className="d-flex justify-content-center mt-5">
+        {!loadData && <Box sx={{ display: 'flex' }}>
+      <CircularProgress color="secondary" />
+    </Box>}
+      </div>
       </div>
     </div>
   );

@@ -87,6 +87,8 @@ const DashboardAppBar = () => {
       </MenuItem>
 
       <MenuItem onClick={() => {setLoggedInUser({}); history.push('/')}  }>
+        
+        <div className="d-flex">
         <img
           style={{ marginLeft: "10px" }}
           className="userImg"
@@ -94,7 +96,9 @@ const DashboardAppBar = () => {
           alt=""
         />
 
-        <p style={{ marginTop: "15px", marginLeft: "10px" }}>Log Out</p>
+        <p style={{ marginTop: "10px", marginLeft: "10px" }}>Log Out</p>
+        </div>
+        
       </MenuItem>
     </Menu>
   );
