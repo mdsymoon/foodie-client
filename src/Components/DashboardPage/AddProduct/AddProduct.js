@@ -3,7 +3,6 @@ import "./AddProduct.css";
 import { useForm } from "react-hook-form";
 import Button from "@restart/ui/esm/Button";
 
-
 const AddProduct = () => {
   const {
     register,
@@ -16,7 +15,7 @@ const AddProduct = () => {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
-  
+
   const onSubmit = (data) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -24,7 +23,7 @@ const AddProduct = () => {
     formData.append("price", data.price);
     formData.append("category", data.category);
 
-    fetch(`http://localhost:5000/addProduct`, {
+    fetch(`https://rocky-citadel-22706.herokuapp.com/addProduct`, {
       method: "POST",
       body: formData,
     })

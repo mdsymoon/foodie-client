@@ -19,12 +19,9 @@ import { UserContext } from "./../../../App";
 const Navigation = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const history = useHistory();
-  const [setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };

@@ -1,2 +1,10 @@
-.hideThis { animation: css 0s 2s forwards; }
+.item-card{
+    cursor: pointer;
+    transition: 0.5s;
+
+}
+.item-card:hover{
+    transform: translateY(-20px);
+    
+}
 

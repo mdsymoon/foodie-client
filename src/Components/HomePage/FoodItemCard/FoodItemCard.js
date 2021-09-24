@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import './FoodItemCard.css';
-import { Card , Alert } from "react-bootstrap";
+import "./FoodItemCard.css";
+import { Card } from "react-bootstrap";
 import { useContext } from "react";
 import { UserContext } from "./../../../App";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
@@ -21,7 +21,7 @@ const customStyles = {
 
 const FoodItemCard = ({ food, title, price, img, category }) => {
   const [loggedInUser] = useContext(UserContext);
-  const [modalIsOpen, setIsOpen] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -38,14 +38,14 @@ const FoodItemCard = ({ food, title, price, img, category }) => {
       category,
       email: loggedInUser.email,
     };
-    fetch(`http://localhost:5000/order`, {
+    fetch(`https://rocky-citadel-22706.herokuapp.com/order`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(orderItem),
     })
       .then((res) => res.json())
       .then((data) => {
-        openModal()
+        openModal();
       });
   };
   return (
@@ -62,9 +62,7 @@ const FoodItemCard = ({ food, title, price, img, category }) => {
               <Card.Title>${food.price}</Card.Title>
             </div>
           </Card.Body>
-          
         </Card>
-        
       ) : (
         <Card
           style={{ width: "18rem" }}
@@ -84,19 +82,16 @@ const FoodItemCard = ({ food, title, price, img, category }) => {
           </Card.Body>
         </Card>
       )}
-       <Modal
+      <Modal
         isOpen={modalIsOpen}
-        
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
         <h4>'{food.title}' added to your order.</h4>
         <button onClick={closeModal}>close</button>
-        
       </Modal>
     </div>
-    
   );
 };
 

@@ -8,7 +8,6 @@ import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import BorderAllIcon from "@mui/icons-material/BorderAll";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import iconImg from "../../../Images/pizza.png";
@@ -22,14 +21,11 @@ import { UserContext } from "./../../../App";
 const DashboardAppBar = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const history = useHistory();
-  const [setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -39,7 +35,6 @@ const DashboardAppBar = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
