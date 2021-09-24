@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -7,20 +7,20 @@ import IconButton from "@mui/material/IconButton";
 
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import BorderAllIcon from '@mui/icons-material/BorderAll';
+import BorderAllIcon from "@mui/icons-material/BorderAll";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import iconImg from "../../../Images/pizza.png";
 import HomeIcon from "@mui/icons-material/Home";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
 import { Tooltip } from "@mui/material";
 import { useHistory } from "react-router";
-import { UserContext } from './../../../App';
+import { UserContext } from "./../../../App";
 
 const DashboardAppBar = () => {
-  const [loggedInUser , setLoggedInUser] = useContext(UserContext);
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const history = useHistory();
   const [setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -58,24 +58,43 @@ const DashboardAppBar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      <MenuItem onClick={() => history.push('/')}>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <HomeIcon />
+        </IconButton>
+        <p style={{ marginTop: "15px" }}>Home</p>
+      </MenuItem>
+
+      <MenuItem onClick={() => history.push('/dashboard/allItem')}>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <BorderAllIcon />
+        </IconButton>
+        <p style={{ marginTop: "15px" }}>All Items</p>
+      </MenuItem>
+
+      <MenuItem onClick={() => history.push('/dashboard/orderItem')}>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <RestaurantMenuIcon />
+        </IconButton>
+        <p style={{ marginTop: "15px" }}>Order</p>
+      </MenuItem>
+
+      <MenuItem onClick={() => history.push('/dashboard/addProduct')}>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <AddCircleOutlineSharpIcon />
         </IconButton>
         <p style={{ marginTop: "15px" }}>Add Product</p>
       </MenuItem>
 
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p style={{ marginTop: "15px" }}>Login</p>
+      <MenuItem onClick={() => {setLoggedInUser({}); history.push('/')}  }>
+        <img
+          style={{ marginLeft: "10px" }}
+          className="userImg"
+          src={loggedInUser.photo}
+          alt=""
+        />
+
+        <p style={{ marginTop: "15px", marginLeft: "10px" }}>Log Out</p>
       </MenuItem>
     </Menu>
   );
@@ -137,8 +156,6 @@ const DashboardAppBar = () => {
               </IconButton>
             </Tooltip>
 
-            
-            
             <Tooltip title="Log Out" placement="bottom">
               <IconButton
                 size="large"
@@ -146,14 +163,14 @@ const DashboardAppBar = () => {
                 color="inherit"
                 onClick={() => {
                   setLoggedInUser({});
-                  history.push('/')
+                  history.push("/");
                 }}
               >
                 <LogoutIcon />
               </IconButton>
             </Tooltip>
 
-            <img className="userImg" src={loggedInUser.photo} alt=""/>
+            <img className="userImg" src={loggedInUser.photo} alt="" />
 
             {/* <Tooltip title="Login" placement="bottom">
               <IconButton

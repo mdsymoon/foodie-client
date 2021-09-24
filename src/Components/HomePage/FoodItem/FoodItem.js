@@ -2,16 +2,18 @@ import React, { useEffect, useState  } from "react";
 import "./FoodItem.css";
 import { Form } from "react-bootstrap";
 import FoodItemCard from "../FoodItemCard/FoodItemCard";
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const FoodItem = () => {
-  
+  const [loadData , setLoadData] = useState(false);
   const [item, setItem] = useState([]);
   const [category, setCategory] = useState(null);
 
   const handleChange = (e) => {
     const newCategory = { category: e.target.value };
     setCategory(newCategory);
+    setLoadData(true);
   };
 
   useEffect(() => {
@@ -23,6 +25,7 @@ const FoodItem = () => {
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
+        setLoadData(true);
       });
   }, [category]);
 
@@ -37,6 +40,7 @@ const FoodItem = () => {
         name="category"
         onChange={(e) => {
           handleChange(e);
+          setLoadData(false);
         }}
         aria-label="Default select example"
       >
@@ -44,7 +48,15 @@ const FoodItem = () => {
         <option value="sea food">Sea food</option>
         <option value="mexican food">Mexican food</option>
         <option value="drinks">Drinks</option>
+        <option value="burger">Burger</option>
+        <option value="pizza">Pizza</option>
+        <option value="slice cake">Slice Cake</option>
       </Form.Select>
+      <div className="d-flex justify-content-center mb-5">
+        {!loadData && <Box sx={{ display: 'flex' }}>
+      <CircularProgress color="secondary" />
+    </Box>}
+      </div>
 
       <div className="row d-flex justify-content-center">
         {item.map((food) => (

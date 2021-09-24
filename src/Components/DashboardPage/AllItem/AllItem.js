@@ -72,7 +72,7 @@ const AllItem = () => {
                   <p style={{ marginTop: "10px" }}>{item.category}</p>
                 </td>
                 <td>
-                  <Tooltip title="cancel" placement="left" style={{ marginTop: "10px" }} onClick={() =>{handleDelete(item._id)}}>
+                  <Tooltip title="DELETE" placement="left" style={{ marginTop: "10px" }} onClick={() =>{handleDelete(item._id)}}>
                     <IconButton>
                       <HighlightOffIcon  />
                     </IconButton>
