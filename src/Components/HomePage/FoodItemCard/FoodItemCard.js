@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import "./FoodItemCard.css";
 import { Card } from "react-bootstrap";
 import { useContext } from "react";
 import { UserContext } from "./../../../App";
 import Modal from "react-modal";
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 Modal.setAppElement("#root");
 
@@ -48,8 +50,12 @@ const FoodItemCard = ({ food, title, price, img, category }) => {
         openModal();
       });
   };
+
+  useEffect(() => {
+    Aos.init({ duration: 1900 })
+  })
   return (
-    <div className="item-card col-lg-4 col-md-6 d-flex justify-content-center align-items-center mb-5">
+    <div data-aos="fade-up" data-aos-anchor-placement="center-bottom" className=" item-card col-lg-4 col-md-6 d-flex justify-content-center align-items-center mb-5">
       {loggedInUser.email ? (
         <Card style={{ width: "18rem" }} onClick={handleOrder}>
           <Card.Img

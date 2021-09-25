@@ -7,27 +7,33 @@ import Box from "@mui/material/Box";
 
 const FoodItem = () => {
   const [loadData, setLoadData] = useState(false);
-  const [item, setItem] = useState([]);
-  const [category, setCategory] = useState(null);
+  const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
 
   const handleChange = (e) => {
-    const newCategory = { category: e.target.value };
-    setCategory(newCategory);
-    setLoadData(true);
+    const newCategory = e.target.value;
+    if (newCategory) {
+      const newItems = items.filter((item) => item.category === newCategory);
+      setFilteredItems(newItems);
+    } else {
+      setFilteredItems(items);
+    }
   };
 
   useEffect(() => {
     fetch(`https://rocky-citadel-22706.herokuapp.com/items`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ category }),
+      body: JSON.stringify(),
     })
       .then((res) => res.json())
       .then((data) => {
-        setItem(data);
+        setItems(data);
+        setFilteredItems(data);
+        console.log(filteredItems);
         setLoadData(true);
       });
-  }, [category]);
+  }, [filteredItems]);
 
   return (
     <div className="mt-5 container">
@@ -37,13 +43,10 @@ const FoodItem = () => {
       <Form.Select
         className="selector"
         name="category"
-        onChange={(e) => {
-          handleChange(e);
-          setLoadData(false);
-        }}
+        onChange={(e) => handleChange(e)}
         aria-label="Default select example"
       >
-        <option>Select Category</option>
+        <option value="">Select Category</option>
         <option value="sea food">Sea food</option>
         <option value="mexican food">Mexican food</option>
         <option value="drinks">Drinks</option>
@@ -60,9 +63,9 @@ const FoodItem = () => {
       </div>
 
       <div className="row d-flex justify-content-center">
-        {item.map((food) => (
+        {filteredItems.map((food) => (
           <FoodItemCard
-          key={food._id}
+            key={food._id}
             food={food}
             title={food.title}
             price={food.price}

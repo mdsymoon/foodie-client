@@ -4,12 +4,7 @@ import { useForm } from "react-hook-form";
 import Button from "@restart/ui/esm/Button";
 
 const AddProduct = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
