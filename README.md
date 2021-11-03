@@ -1,5 +1,5 @@
-# Foodie-Client
-Amet fugiat minim nisi magna dolore consequat dolore non elit. Consectetur fugiat exercitation enim do ut proident minim sunt cupidatat sunt eu veniam. Ipsum et labore pariatur velit qui. Aliqua magna eiusmod anim anim nisi exercitation cillum nostrud cillum exercitation culpa proident. Do nisi nostrud fugiat culpa ullamco eu anim veniam est excepteur proident qui. Deserunt nisi commodo ex laborum minim amet incididunt nostrud laboris et.
+# Foodie-Client - a food order website
+Foodie-client is a food order website where anyone can order food. In the home page of this website customer can order by select category. Customer can order multiple food item. Customer can also see their ordered item and cancel any order from order page. To order any food item user need to be logged in.
 
 ## Features 
 - Food item can be found by category select.
