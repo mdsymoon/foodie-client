@@ -1,4 +1,6 @@
 # Foodie-Client - a food order website
+
+## About Foodie-Client
 Foodie-client is a food order website where anyone can order food. In the home page of this website customer can order by select category. Customer can order multiple food item. Customer can also see their ordered item and cancel any order from order page. To order any food item user need to be logged in.
 
 ## Features 
