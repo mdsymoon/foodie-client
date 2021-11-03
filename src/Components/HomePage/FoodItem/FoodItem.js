@@ -30,10 +30,10 @@ const FoodItem = () => {
       .then((data) => {
         setItems(data);
         setFilteredItems(data);
-        console.log(filteredItems);
+        
         setLoadData(true);
       });
-  }, [filteredItems]);
+  },[]);
 
   return (
     <div className="mt-5 container">
