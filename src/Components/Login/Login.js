@@ -60,19 +60,7 @@ const Login = () => {
       });
   };
 
-  // const handleSignOut = () => {
-  //   signOut(auth)
-  //     .then((res) => {
-  //       const signedOutUser = {
-  //         isSignIn: false,
-  //         name: "",
-  //         email: "",
-  //         photo: "",
-  //       };
-  //       setUser(signedOutUser);
-  //     })
-  //     .catch((err) => {});
-  // };
+  
 
   const handleSubmit = (e) => {
     if (newUser && user.email && user.password) {
@@ -144,7 +132,7 @@ const Login = () => {
   };
 
   return (
-    <div className=" p-5" style={{ maxWidth: "500px", margin: "auto" }}>
+    <div className="p-3 mt-5" style={{ maxWidth: "500px", margin: "auto" }}>
       <div>
         {newUser ? (
           <h1 className="text-center">Create New Account</h1>
@@ -201,7 +189,7 @@ const Login = () => {
       ) : (
         <Button onClick={signWithGoogle}>Sign In</Button>
       )} */}
-        <Button onClick={signWithGoogle} variant="outlined" className="googleSignIn" style={{width: "auto"}}>
+        <Button onClick={signWithGoogle} variant="outlined" className="w-100">
           <FcGoogle className="icon" />
           sign in with Google
         </Button>
