@@ -184,8 +184,9 @@ const Login = () => {
             type="checkbox"
             onChange={() => setNewUser(!newUser)}
             name="newUser"
+           
           />
-          <label htmlFor="newUser">New User </label>
+          <label htmlFor="newUser" style ={{marginLeft: "3px"}} >  New User </label>
           <br />
           <br />
           <Form.Control
@@ -200,9 +201,9 @@ const Login = () => {
       ) : (
         <Button onClick={signWithGoogle}>Sign In</Button>
       )} */}
-        <Button onClick={signWithGoogle} variant="outlined" className="googleSignIn">
+        <Button onClick={signWithGoogle} variant="outlined" className="googleSignIn" style={{width: "auto"}}>
           <FcGoogle className="icon" />
-          sign is with Google
+          sign in with Google
         </Button>
         <p style={{ color: "red" }}>{user.error}</p>
         {user.success && (
