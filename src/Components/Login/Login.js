@@ -37,7 +37,7 @@ const Login = () => {
     error: "",
     success: false,
   });
-
+  console.log(user);
   const signWithGoogle = () => {
     const provider = new GoogleAuthProvider();
 

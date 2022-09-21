@@ -59,13 +59,15 @@ const DashboardAppBar = () => {
         </IconButton>
         <p style={{ marginTop: "15px" }}>Home</p>
       </MenuItem>
+      {loggedInUser.email === "mdsymoon11@gmail.com" && (
 
       <MenuItem onClick={() => history.push('/dashboard/allItem')}>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <BorderAllIcon />
         </IconButton>
         <p style={{ marginTop: "15px" }}>All Items</p>
-      </MenuItem>
+      </MenuItem> 
+      )}
 
       <MenuItem onClick={() => history.push('/dashboard/orderItem')}>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -73,13 +75,14 @@ const DashboardAppBar = () => {
         </IconButton>
         <p style={{ marginTop: "15px" }}>Order</p>
       </MenuItem>
-
-      <MenuItem onClick={() => history.push('/dashboard/addProduct')}>
+      {loggedInUser.email === "mdsymoon11@gmail.com" && (
+        <MenuItem onClick={() => history.push('/dashboard/addProduct')}>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <AddCircleOutlineSharpIcon />
         </IconButton>
         <p style={{ marginTop: "15px" }}>Add Product</p>
       </MenuItem>
+      )}
 
       <MenuItem onClick={() => {setLoggedInUser({}); history.push('/')}  }>
         
@@ -118,6 +121,8 @@ const DashboardAppBar = () => {
                 <HomeIcon />
               </IconButton>
             </Tooltip>
+            {loggedInUser.email === "mdsymoon11@gmail.com" && (
+
             <Tooltip title="All Items" placement="bottom">
               <IconButton
                 size="large"
@@ -130,18 +135,10 @@ const DashboardAppBar = () => {
                 <BorderAllIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Order" placement="bottom">
-              <IconButton
-                size="large"
-                aria-label="show 4 new mails"
-                color="inherit"
-                onClick={() => {
-                  history.push("/dashboard/orderItem");
-                }}
-              >
-                <RestaurantMenuIcon />
-              </IconButton>
-            </Tooltip>
+            )}
+
+            {loggedInUser.email === "mdsymoon11@gmail.com" && (
+
             <Tooltip title="Add Product" placement="bottom">
               <IconButton
                 size="large"
@@ -152,6 +149,21 @@ const DashboardAppBar = () => {
                 }}
               >
                 <AddCircleOutlineSharpIcon />
+              </IconButton>
+            </Tooltip>
+            )}
+
+
+            <Tooltip title="Order" placement="bottom">
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+                onClick={() => {
+                  history.push("/dashboard/orderItem");
+                }}
+              >
+                <RestaurantMenuIcon />
               </IconButton>
             </Tooltip>
 

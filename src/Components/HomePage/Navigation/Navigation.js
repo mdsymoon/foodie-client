@@ -17,8 +17,8 @@ import { useHistory } from "react-router";
 import { UserContext } from "./../../../App";
 
 const Navigation = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const history = useHistory();
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   
